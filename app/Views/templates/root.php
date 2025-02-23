@@ -9,6 +9,7 @@
   </title>
   <link rel="stylesheet" href="<?= base_url('assets/vendor/bootstrap/bootstrap.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/vendor/tabler-icons/tabler-icons.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>">
   <?= $this->renderSection('root_head', true) ?>
 </head>
 

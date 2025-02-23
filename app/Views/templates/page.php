@@ -2,7 +2,7 @@
 
 <?= $this->section('page') ?>
 <main>
-  <?= $this->renderSection('main') ?>
+  <?= $this->renderSection('content') ?>
 </main>
 <?= $this->endSection() ?>
 

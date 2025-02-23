@@ -10,17 +10,17 @@
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
 
   <!-- Sidebar Start -->
-  <?= $this->include('components/dashboard/sidebar') ?>
+  <?= $this->include('components/sidebar') ?>
   <!--  Sidebar End -->
 
   <!--  Main wrapper -->
   <div class="body-wrapper">
     <!--  Header Start -->
-    <?= $this->include('components/dashboard/header') ?>
+    <?= $this->include('components/header') ?>
     <!--  Header End -->
     <div class="container-fluid">
       <?= $this->renderSection('content') ?>
-      <?= $this->include('components/dashboard/footer') ?>
+      <?= $this->include('components/footer') ?>
     </div>
   </div>
 </div>
