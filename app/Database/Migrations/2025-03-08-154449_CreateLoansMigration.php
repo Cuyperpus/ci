@@ -27,7 +27,7 @@ class CreateLoansMigration extends Migration
             ],
             'quantity' => [
                 'type'          => 'TINYINT',
-                'constraint'    => 32,
+                'constraint'    => 2,
                 'unsigned'      => true,
                 'default'       => 1,
             ],

@@ -22,11 +22,13 @@ class CreateMembersMigration extends Migration
             'email' => [
                 'type'          => 'VARCHAR',
                 'constraint'    => 128,
+                'unique'        => true,
                 'null'          => true,
             ],
             'phone' => [
                 'type'          => 'VARCHAR',
                 'constraint'    => 18,
+                'unique'        => true,
                 'null'          => true,
             ],
             'address' => [

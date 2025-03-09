@@ -27,7 +27,7 @@ class CreateBooksMigration extends Migration
             ],
             'isbn' => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 13,
+                'constraint'     => 20,
                 'unique'         => true,
             ],
             'created_at' => [

@@ -18,6 +18,7 @@ class CreateRacksMigration extends Migration
             'name' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 8,
+                'unique'         => true,
             ],
             'floor' => [
                 'type'           => 'VARCHAR',

@@ -18,6 +18,7 @@ class CreateCategoriesMigration extends Migration
             'name' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 64,
+                'unique'         => true,
             ],
             'created_at' => [
                 'type'           => 'DATETIME',

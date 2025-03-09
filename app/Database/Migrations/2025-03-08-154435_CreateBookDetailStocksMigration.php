@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateBookStocksMigration extends Migration
+class CreateBookDetailStocksMigration extends Migration
 {
     public function up()
     {
@@ -22,7 +22,7 @@ class CreateBookStocksMigration extends Migration
             ],
             'quantity' => [
                 'type'           => 'TINYINT',
-                'constraint'     => 32,
+                'constraint'     => 2,
                 'unsigned'       => true,
             ],
             'created_at' => [
