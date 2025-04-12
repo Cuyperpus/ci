@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateBookCategoriesMigration extends Migration
 {
+    protected $tableName = 'book_categories';
+
     public function up()
     {
         $this->forge->addField([
@@ -15,7 +17,7 @@ class CreateBookCategoriesMigration extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'book_detail_id' => [
+            'book_id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
@@ -40,13 +42,13 @@ class CreateBookCategoriesMigration extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('book_detail_id', 'book_details', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('book_id', 'books', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('category_id', 'categories', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('book_categories', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('book_categories');
+        $this->forge->dropTable($this->tableName);
     }
 }

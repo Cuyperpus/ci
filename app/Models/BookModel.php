@@ -13,6 +13,7 @@ class BookModel extends Model
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'slug',
         'title',
         'isbn',
     ];
@@ -32,11 +33,21 @@ class BookModel extends Model
 
     // Validation
     protected $validationRules      = [
+        'slug' => [
+            'label' => 'Slug',
+            'rules' => [
+                'required',
+                'string',
+                'max_length[255]',
+                'is_unique[books.slug]',
+            ],
+            'errors' => [],
+        ],
         'title' => [
             'label' => 'Judul',
             'rules' => [
                 'required',
-                'alpha_space',
+                'string',
                 'max_length[128]',
                 'is_unique[books.title]',
             ],
@@ -47,7 +58,7 @@ class BookModel extends Model
             'rules' => [
                 'required',
                 'alpha_numeric_punct',
-                'max_length[20]',
+                'exact_length[17]',
                 'is_unique[books.isbn]',
             ],
             'errors' => [],
@@ -58,13 +69,39 @@ class BookModel extends Model
     protected $cleanValidationRules = true;
 
     // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    protected $allowCallbacks    = true;
+    protected $beforeInsert      = ['generateSlug'];
+    protected $afterInsert       = [];
+    protected $beforeUpdate      = ['generateSlug'];
+    protected $afterUpdate       = [];
+    protected $beforeFind        = [];
+    protected $afterFind         = [];
+    protected $beforeDelete      = [];
+    protected $afterDelete       = [];
+    protected $beforeInsertBatch = ['generateSlugBatch'];
+    protected $afterInsertBatch  = [];
+    protected $beforeUpdateBatch = ['generateSlugBatch'];
+    protected $afterUpdateBatch  = [];
+
+    protected function generateSlug(array $data)
+    {
+        if (isset($data['data']['title'])) {
+            $data['data']['slug'] = url_title($data['data']['title'], '-', true);
+        }
+
+        return $data;
+    }
+
+    protected function generateSlugBatch(array $data)
+    {
+        if (isset($data['data']) && is_array($data['data'])) {
+            foreach ($data['data'] as &$row) {
+                if (isset($row['title'])) {
+                    $row['slug'] = url_title($row['title'], '-', true);
+                }
+            }
+        }
+
+        return $data;
+    }
 }

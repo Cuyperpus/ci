@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateBookDetailStocksMigration extends Migration
 {
+    protected $tableName = 'book_stocks';
+
     public function up()
     {
         $this->forge->addField([
@@ -24,6 +26,7 @@ class CreateBookDetailStocksMigration extends Migration
                 'type'           => 'TINYINT',
                 'constraint'     => 2,
                 'unsigned'       => true,
+                'default'        => 1,
             ],
             'created_at' => [
                 'type'           => 'DATETIME',
@@ -41,11 +44,11 @@ class CreateBookDetailStocksMigration extends Migration
 
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('book_detail_id', 'book_details', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('book_stocks', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('book_stocks');
+        $this->forge->dropTable($this->tableName);
     }
 }

@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateBooksMigration extends Migration
 {
+    protected $tableName = 'books';
+
     public function up()
     {
         $this->forge->addField([
@@ -26,30 +28,29 @@ class CreateBooksMigration extends Migration
                 'unique'         => true,
             ],
             'isbn' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 20,
+                'type'           => 'CHAR',
+                'constraint'     => 17,
                 'unique'         => true,
             ],
             'created_at' => [
-                'type'       => 'DATETIME',
-                'null'       => true,
+                'type'           => 'DATETIME',
+                'null'           => true,
             ],
             'updated_at' => [
-                'type'       => 'DATETIME',
-                'null'       => true,
+                'type'           => 'DATETIME',
+                'null'           => true,
             ],
             'deleted_at' => [
-                'type'       => 'DATETIME',
-                'null'       => true,
+                'type'           => 'DATETIME',
+                'null'           => true,
             ],
         ]);
-
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('books', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('books');
+        $this->forge->dropTable($this->tableName);
     }
 }

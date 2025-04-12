@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateRackBooksMigration extends Migration
 {
+    protected $tableName = 'rack_books';
+
     public function up()
     {
         $this->forge->addField([
@@ -42,11 +44,11 @@ class CreateRackBooksMigration extends Migration
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('rack_id', 'racks', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('book_detail_id', 'book_details', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('rack_books', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('rack_books');
+        $this->forge->dropTable($this->tableName);
     }
 }

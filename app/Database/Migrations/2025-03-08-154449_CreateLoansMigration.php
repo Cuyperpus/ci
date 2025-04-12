@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateLoansMigration extends Migration
 {
+    protected $tableName = 'loans';
+
     public function up()
     {
         $this->forge->addField([
@@ -19,17 +21,19 @@ class CreateLoansMigration extends Migration
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
+                'null'           => true,
             ],
             'book_detail_id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
+                'null'           => true,
             ],
             'quantity' => [
-                'type'          => 'TINYINT',
-                'constraint'    => 2,
-                'unsigned'      => true,
-                'default'       => 1,
+                'type'           => 'TINYINT',
+                'constraint'     => 2,
+                'unsigned'       => true,
+                'default'        => 1,
             ],
             'due_date' => [
                 'type'           => 'DATETIME',
@@ -53,13 +57,13 @@ class CreateLoansMigration extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('member_id', 'members', 'id', 'CASCADE', 'NO ACTION');
-        $this->forge->addForeignKey('book_detail_id', 'book_details', 'id', 'CASCADE', 'NO ACTION');
-        $this->forge->createTable('loans', true);
+        $this->forge->addForeignKey('member_id', 'members', 'id', 'CASCADE', 'SET NULL');
+        $this->forge->addForeignKey('book_detail_id', 'book_details', 'id', 'CASCADE', 'SET NULL');
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('loans');
+        $this->forge->dropTable($this->tableName);
     }
 }

@@ -36,8 +36,8 @@ class RackModel extends Model
             'label' => 'Nama',
             'rules' => [
                 'required',
-                'alpha_space',
-                'max_length[8]',
+                'alpha_numeric_space',
+                'max_length[16]',
             ],
             'errors' => [],
         ],

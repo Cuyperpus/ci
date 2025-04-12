@@ -35,7 +35,7 @@ class CategoryModel extends Model
             'label' => 'Nama',
             'rules' => [
                 'required',
-                'alpha_space',
+                'alpha_numeric_space',
                 'max_length[64]',
                 'is_unique[categories.name]',
             ],

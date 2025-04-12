@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateBookDetailAuthorsMigration extends Migration
 {
+    protected $tableName = 'book_detail_authors';
+
     public function up()
     {
         $this->forge->addField([
@@ -42,11 +44,11 @@ class CreateBookDetailAuthorsMigration extends Migration
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('book_detail_id', 'book_details', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('author_id', 'authors', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('book_detail_authors', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('book_detail_authors');
+        $this->forge->dropTable($this->tableName);
     }
 }

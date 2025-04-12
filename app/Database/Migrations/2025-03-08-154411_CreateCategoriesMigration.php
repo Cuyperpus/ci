@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateCategoriesMigration extends Migration
 {
+    protected $tableName = 'categories';
+
     public function up()
     {
         $this->forge->addField([
@@ -35,11 +37,11 @@ class CreateCategoriesMigration extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('categories', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('categories');
+        $this->forge->dropTable($this->tableName);
     }
 }

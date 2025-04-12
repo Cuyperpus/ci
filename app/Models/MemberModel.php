@@ -39,7 +39,7 @@ class MemberModel extends Model
             'label' => 'Nama',
             'rules' => [
                 'required',
-                'string',
+                'alpha_numeric_punct',
                 'max_length[64]',
             ],
             'errors' => [],
@@ -59,7 +59,7 @@ class MemberModel extends Model
             'rules' => [
                 'permit_empty',
                 'string',
-                'max_length[18]',
+                'max_length[20]',
                 'is_unique[members.phone]',
             ],
             'errors' => [],

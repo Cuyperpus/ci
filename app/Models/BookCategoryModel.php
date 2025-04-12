@@ -13,7 +13,7 @@ class BookCategoryModel extends Model
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'book_detail_id',
+        'book_id',
         'category_id',
     ];
 
@@ -32,8 +32,8 @@ class BookCategoryModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'book_detail_id' => [
-            'label' => 'Detail Buku',
+        'book_id' => [
+            'label' => 'Buku',
             'rules' => [
                 'required',
                 'is_natural_no_zero',

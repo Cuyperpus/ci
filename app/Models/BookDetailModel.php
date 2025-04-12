@@ -47,13 +47,13 @@ class BookDetailModel extends Model
             'label' => 'Penerbit',
             'rules' => [
                 'required',
-                'string',
+                'alpha_numeric_space',
                 'max_length[64]',
             ],
             'errors' => [],
         ],
         'year' => [
-            'label' => 'Tahun',
+            'label' => 'Tahun Terbit',
             'rules' => [
                 'required',
                 'valid_date[Y]',
@@ -61,7 +61,7 @@ class BookDetailModel extends Model
             'errors' => [],
         ],
         'book_cover' => [
-            'label' => 'Sampul',
+            'label' => 'Tautan Sampul',
             'rules' => [
                 'permit_empty',
                 'string',

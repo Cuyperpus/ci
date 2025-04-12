@@ -35,7 +35,7 @@ class AuthorModel extends Model
             'label' => 'Nama',
             'rules' => [
                 'required',
-                'string',
+                'alpha_numeric_punct',
                 'max_length[64]',
             ],
             'errors' => [],

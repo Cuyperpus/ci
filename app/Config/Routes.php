@@ -5,6 +5,9 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
+helper('presenter');
+
 service('auth')->routes($routes, [
   'except' => [
     'register',
@@ -14,4 +17,10 @@ service('auth')->routes($routes, [
 ]);
 
 $routes->view('/', 'pages/home.php');
-$routes->view('/about', 'pages/about.php');
+
+$routes->group('admin', static function (RouteCollection $routes) {
+  presenter($routes, [
+    'route'      => 'books',
+    'controller' => 'BooksController',
+  ]);
+});

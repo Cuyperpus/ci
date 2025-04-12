@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateRacksMigration extends Migration
 {
+    protected $tableName = 'racks';
+
     public function up()
     {
         $this->forge->addField([
@@ -17,7 +19,7 @@ class CreateRacksMigration extends Migration
             ],
             'name' => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 8,
+                'constraint'     => 16,
                 'unique'         => true,
             ],
             'floor' => [
@@ -40,11 +42,11 @@ class CreateRacksMigration extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('racks', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('racks');
+        $this->forge->dropTable($this->tableName);
     }
 }

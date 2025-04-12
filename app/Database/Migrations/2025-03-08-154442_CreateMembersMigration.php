@@ -6,6 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class CreateMembersMigration extends Migration
 {
+    protected $tableName = 'members';
+
     public function up()
     {
         $this->forge->addField([
@@ -16,29 +18,29 @@ class CreateMembersMigration extends Migration
                 'auto_increment' => true,
             ],
             'name' => [
-                'type'          => 'VARCHAR',
-                'constraint'    => 64,
+                'type'           => 'VARCHAR',
+                'constraint'     => 64,
             ],
             'email' => [
-                'type'          => 'VARCHAR',
-                'constraint'    => 128,
-                'unique'        => true,
-                'null'          => true,
+                'type'           => 'VARCHAR',
+                'constraint'     => 128,
+                'unique'         => true,
+                'null'           => true,
             ],
             'phone' => [
-                'type'          => 'VARCHAR',
-                'constraint'    => 18,
-                'unique'        => true,
-                'null'          => true,
+                'type'           => 'VARCHAR',
+                'constraint'     => 20,
+                'unique'         => true,
+                'null'           => true,
             ],
             'address' => [
-                'type'          => 'VARCHAR',
-                'constraint'    => 255,
-                'null'          => true,
+                'type'           => 'VARCHAR',
+                'constraint'     => 255,
+                'null'           => true,
             ],
             'gender' => [
-                'type'          => 'ENUM',
-                'constraint'    => ['L', 'P'],
+                'type'           => 'ENUM',
+                'constraint'     => ['L', 'P'],
             ],
             'created_at' => [
                 'type'           => 'DATETIME',
@@ -55,11 +57,11 @@ class CreateMembersMigration extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('members', true);
+        $this->forge->createTable($this->tableName);
     }
 
     public function down()
     {
-        $this->forge->dropTable('members');
+        $this->forge->dropTable($this->tableName);
     }
 }
